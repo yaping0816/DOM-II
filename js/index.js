@@ -110,3 +110,8 @@ destinationContext.addEventListener('click', event => {
 contentDes.addEventListener('click', event => {
     contentDes.style.border = '4px dashed #F9AB55'
 })
+
+// Stop the navigation items from refreshing the page by using preventDefault()
+navLinks.forEach(link => {
+    link.addEventListener('click', event => event.preventDefault());
+})
