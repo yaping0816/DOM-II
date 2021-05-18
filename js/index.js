@@ -4,6 +4,7 @@
 const header = document.querySelector('header');
 const nav = document.querySelector('nav');
 const navLinks = nav.querySelectorAll('a');
+const home = document.querySelector('a');
 const logo = document.querySelector('.logo-heading')
 const container = document.querySelector('.container');
 const h2 = document.querySelectorAll('h2');
@@ -15,6 +16,7 @@ const section = document.querySelector('section');
 const headerImg = intro.querySelector('img');
 const footer = document.querySelector('footer');
 const footerpara = footer.querySelector('p');
+const btn = document.querySelector('.btn');
 // debugger
 
 
@@ -55,8 +57,11 @@ div.forEach(item =>{
 // window.addEventListener('load', event => alert('Are you ready for fun???'));
 
 // 5.focus
-footer.addEventListener('focus', event =>{
-    footerpara.style.backgroundColor = 'red';
+// Remember only couple of elements are keyboard-focusable. eg. <a>, <button>, <input>, <select>...
+// so if you add focus event to the footer, it won't trigger
+home.addEventListener('focus', event =>{
+    home.style.background = 'red';
+    console.log('focusin btn');
     // debugger
 });
 
@@ -67,6 +72,9 @@ header.addEventListener('click', event => {
     navLinks.forEach(link =>{
         link.style.fontSize = '2rem';
     })
+    //implement the animations
+    gsap.from('header', {duration:1, y:'-100%', ease:'bounce'}) 
+    gsap.from('.nav-link', {duration: 1, opacity: 0, delay: 1, stagger: .5})
 });
 
 // 7.mouseleave
@@ -76,10 +84,12 @@ header.addEventListener('mouseleave', event =>{
     navLinks.forEach(link =>{
         link.style.fontSize = '';
     })
+    // gsap.to('header',{}) //doesn/t work, nav still couldn't clickable
+    // gsap.to('.nav-link', {})
 })
 
 // 8.dblclick
-headerImg.addEventListener('dblclick', event =>{
+headerImg.addEventListener('dblclick', () =>{
     headerImg.setAttribute('src','https://pixnio.com/free-images/2017/05/10/2017-05-10-18-45-42.jpg');
 })
 
